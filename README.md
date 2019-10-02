@@ -1,6 +1,6 @@
 # Linux notes
 
-[https://github.com/dangduytung/linux](https://github.com/dangduytung/linux){:target="_blank"}
+[https://github.com/dangduytung/linux](https://github.com/dangduytung/linux)
 
 ### Characteristics
 
