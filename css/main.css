@@ -69,6 +69,7 @@ a {
 }
 main {
     text-align: left;
+    font-size: 14px;
 }
 a:hover {
 		color: rgba(220,220,0,0.6);
