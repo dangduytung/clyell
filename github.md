@@ -86,6 +86,10 @@ git rm -r [folder]  (git rm -r --cached [folder])
 
 // URL
 ~~~
-git config --get remote.origin.url
+git remote -v
+git remote -v | grep fetch | awk '{print $2}'
 git remote show origin
+git remote get-url origin
+git config --get remote.origin.url
+git remote set-url origin https://github.com/USERNAME/REPOSITORY.git  (change url)
 ~~~
