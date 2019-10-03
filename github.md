@@ -42,10 +42,13 @@ echo "# angular" >> README.md
 git init
 ~~~
 
-// Add
+// Add Git version 2.x
 ~~~
 git add [file]
-git add . (add all files)
+git add .                 # new/modified/deleted files
+git add -A                # new/modified/deleted files
+git add --ignore-removal  # new/modified files
+git add -u                # modified/deleted files
 git remote add origin https://github.com/dangduytung/angular.git
 ~~~
 
@@ -58,6 +61,12 @@ git commit -m "message"
 ~~~
 git push origin master (git push -u origin master)
 git push origin gh-pages
+~~~
+
+// Revert (reset) changes to a file if they haven’t been committed yet:
+~~~
+git checkout -- <file>
+git checkout <commit_hash> -- <file>  (to a specific revision)
 ~~~
 
 // Ignore
