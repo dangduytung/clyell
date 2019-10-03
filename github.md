@@ -83,3 +83,9 @@ git update-index --no-assume-unchanged <path/to/file>
 ~~~
 git rm -r [folder]  (git rm -r --cached [folder])
 ~~~
+
+// URL
+~~~
+git config --get remote.origin.url
+git remote show origin
+~~~
