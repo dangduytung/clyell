@@ -93,3 +93,23 @@ git remote get-url origin
 git config --get remote.origin.url
 git remote set-url origin https://github.com/USERNAME/REPOSITORY.git  (change url)
 ~~~
+
+//Change master to gh-pages
+~~~
+# Github's web hosting looks for a branch called "gh-pages"
+# Git by names the default branch "master" so we need rename
+# it to "gh-pages" so that Github can find the website files.
+
+# In terminal/cmd
+git checkout -b gh-pages                # Create a new branch called gh-pages
+git push origin gh-pages                # Push the gh-pages repo to github
+
+git branch -D master
+git push --set-upstream origin gh-pages
+
+# On Github
+Settings (Repo settings) --> Branches --> Default Branch --> gh-pages --> Update
+
+# In terminal/cmd
+git push origin :master                 # Delete the old branch    
+~~~
