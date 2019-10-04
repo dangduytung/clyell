@@ -69,6 +69,12 @@ git checkout -- <file>
 git checkout <commit_hash> -- <file>  (to a specific revision)
 ~~~
 
+// Clone
+~~~
+git clone https://github.com/dangduytung/linux.git
+git clone -b mybranch --single-branch git://sub.domain.com/repo.git   (one branch)
+~~~
+
 // Ignore
 ~~~
 git update-index --assume-unchanged <path/to/file>
@@ -94,6 +100,14 @@ git config --get remote.origin.url
 git remote set-url origin https://github.com/USERNAME/REPOSITORY.git  (change url)
 ~~~
 
+// Merge branch to master
+~~~
+git checkout master
+git pull origin master
+git merge [branch]   #gh-pages
+git push origin master
+~~~
+
 //Change master to gh-pages
 ~~~
 # Github's web hosting looks for a branch called "gh-pages"
@@ -104,8 +118,8 @@ git remote set-url origin https://github.com/USERNAME/REPOSITORY.git  (change ur
 git checkout -b gh-pages                # Create a new branch called gh-pages
 git push origin gh-pages                # Push the gh-pages repo to github
 
-git branch -D master
-git push --set-upstream origin gh-pages
+#git branch -D master
+#git push --set-upstream origin gh-pages
 
 # On Github
 Settings (Repo settings) --> Branches --> Default Branch --> gh-pages --> Update
