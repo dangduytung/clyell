@@ -19,6 +19,7 @@ git branch | grep \* | cut -d ' ' -f2
 ~~~
 git log --pretty=oneline
 git whatchanged
+git whatchanged origin/master -n 1   #show changes server and local
 ~~~
 
 // Diff change [remote-path] and [local-path] are the same
