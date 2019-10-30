@@ -15,11 +15,13 @@ layout: content
 ### Shell script example move file to usb
 
 ~~~ bash
-#!/bin/sh  
+#!/bin/sh
 # file : viettel_move_app_to_usb.sh
 # run ./viettel_move_app_to_usb.sh (live_iptv/test)
 
-#Check exist usb
+ROOT_PROJECT='D:\\workspace\\viettel_nextui\\phase1\\windmill_viettel';
+
+# 1. Check exist usb label F: G:
 usbLabel='F:';
 usbInfo=`df -h | grep $usbLabel`;
 if [ "$usbInfo" == "" ] ; then
@@ -35,28 +37,46 @@ if [ "$usbInfo" == "" ] ; then
 fi
 
 
-#check name file is current day
-version="2.0.147";
+# 2. Find current build number of project
+filename="${ROOT_PROJECT}\\build_number.properties"
+n=1
+# build_number="2.3.149";
+build_number='';
+while read line; do
+    # echo "Line No. $n : $line"
+    if [ $n -gt 1 ]; then
+        number="$(cut -d'=' -f2 <<<"$line")"
+        # echo "number=$number"
+        build_number+="$number."
+    fi
+n=$((n+1))
+done < $filename
 
-name="viettel_new_ui_v"$version$"-log(";
+# Remove last character (dot unused)
+build_number=${build_number::-1}
+
+# Echo build number to console
+echo -e "\e[34mbuild_number : $build_number"
+
+# 3. Check name file is current day
+name="viettel_new_ui_v"$build_number$"-log(";
 name+=$(date +%Y%m%d)"_";
 #echo $name;
 
-#param input: live_iptv, test_iptv...
+# 4. Check param input: live_iptv, test_iptv...
 buildType=$1;
 
 #concat url file with input param
-pathFile='D:\\workspace\\viettel_nextui\\phase1\\windmill_viettel\\_rel\\'$version'\\';
+pathFile=${ROOT_PROJECT}'\\_rel\\'${build_number}'\\';
 pathFile+="$buildType/*.zip";
-#echo $pathFile;
+# echo "pathFile : $pathFile";
 
-
-#flag to check print notify out
+# flag to check print notify out
 flag=false;
 
-
+# 5. Move file to USB and backup old file in USB
 for file in $pathFile; do
-    #printf -- '%s\n' "${file##*/}"
+    # printf -- '%s\n' "${file##*/}"
 
 	if [[ "$file" == *$name* ]];then
 		#printf '%s\n' "${file##*/}";
@@ -71,6 +91,7 @@ for file in $pathFile; do
 done
 
 
+# 6. Backup log.txt and remove some file unused
 if $flag ; then
 
 	#! remove files log in usb
@@ -78,8 +99,7 @@ if $flag ; then
 	rm -rf $usbLabel'\\log.txt.backup';
 
 	fileLog=$usbLabel'\\log.txt';
-	if [ -f "$fileLog" ]
-	then
+	if [ -f "$fileLog" ] ; then
 		# echo "$fileLog found."
 		mv $fileLog $usbLabel'\\log_1.backup';
 		#rm -rf $usbLabel'\\log.txt';
