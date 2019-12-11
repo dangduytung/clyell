@@ -9,15 +9,61 @@ permalink: /github/
 git status
 ~~~
 
-// Check branch
+// Branch
 ~~~
 git branch
+git branch -r                               #git branch -a
 git branch | grep \* | cut -d ' ' -f2
+git branch [new-branch]                     #Create a branch (then checkout that branch)
+git checkout - [new-branch]                 #Create a branch and checkout that branch
+git cherry -v master                        #Check commit history with current branch
+git merge [branch]                          #Merge master from other branch (But first: git checkout master)
+git merge branch-name --no-commit --no-ff   #Merge branch not yet commit
+git diff [branch]                           #Check changed between current state with other branch
+git diff [branch] [file]
+git branch -d [branch]                      #Delete branch
+git fetch orgin                             #Get all branches
+~~~
+
+// Other
+~~~
+git rev-parse --show-toplevel               #Get root folder
+git rm $(git ls-files --deleted)            #Delete local deleted file at repo
+git clean -f                                #Delete all files untrack     (-d : delete folder)
+git clean -n -f -d                          #View files before delete
+git reset HEAD [file]                       #Unstage files
+git describe --tags `git rev-list --tag --max-count=1`              #View last tag
+git for-each-ref --sort=-committerdate refs/heads/ | head           #List branches last usaged
+tar cJf project.tar.xz project/ --exclude-vcs                       #Tar project except .git folder
+git diff --name-only | xargs tar -cf project.tar -T -               #Tar all files which changed at local
+git stash                                                           
+git ls-tree HEAD                                                    #Tree object
+git cat-file –p [commit_id]
+git grep "search"
+git instaweb –httpd=webrick
+git gc
+git archive --format=tar master                                     #Create file tar
+git prune                                                           #Delete objects has not pointers
+git fsck                                                            #Integrity check
+~~~
+
+// Find conflict
+~~~
+grep -H -r "<<<" *
+grep -H -r ">>>" *
+grep -H -r '^=======$' *
 ~~~
 
 // Show log
 ~~~
-git log --pretty=oneline
+git log
+git log -2                           #View 2 last committed
+git log -p -2                        #View 2 last committed ang changed
+git log --pretty=oneline [filename]
+git log --follow -p -- [filename]
+gitk [filename]                      #Graphics interface
+git blame [filename]                 #Show revision and author each line
+git gui blame [filename]
 git whatchanged
 git whatchanged origin/master -n 1   #show changes server and local
 ~~~
@@ -25,9 +71,29 @@ git whatchanged origin/master -n 1   #show changes server and local
 // Diff change [remote-path] and [local-path] are the same
 ~~~
 git fetch origin master
+git diff                                   #Show file changed but not add
+git diff --cached                          #Show file changed and added
 git diff origin/master -- [local-path]
 git diff --name-status
-git diff [log1] [log2]
+git diff [commit_id1] [commit_id2]
+git diff --name-only [commit_id1] [commit_id2]            #Show all file changed between two commit_id
+git diff-tree -no-commit-id --name-only -r [commit_id]    #Show all file changed at commit_id
+git show --pretty="format:" --name-only [commit_id]       #Show all file changed at commit_id
+git show [commit_id]                                      #Show detail of one commit
+~~~
+
+// Patch
+~~~
+git diff > path-issue-1.patch                                          #Create patch
+git add [patch]   => git diff --staged > path-issue-2.patch            #Add a file and then create patch
+git diff HEAD > patch-issue-2.patch                                    
+git format-patch [commit_id]
+git format-patch HEAD~2                                                #Create patch from 2 last committed
+git format-patch origin/master                                         #Create patch from all commits but not yet push
+git format-patch --binary --full-index origin/master                   #Create patch binary
+git apply -v patch-name.patch                                          #Apply patch
+git am patch1.patch                                                    #Apply patch by format-patch
+patch < file.patch                                                     #Apply patch not use git
 ~~~
 
 // Config
@@ -56,6 +122,7 @@ git remote add origin https://github.com/dangduytung/angular.git
 // Commit
 ~~~
 git commit -m "message"
+git commit --amend -m "New commit mesage"         #Change message of last commit
 ~~~
 
 // Push
@@ -68,6 +135,21 @@ git push origin gh-pages
 ~~~
 git checkout -- <file>
 git checkout <commit_hash> -- <file>  (to a specific revision)
+~~~
+
+// Reset
+~~~
+git reset [commit_id]
+git commit -m "Revert to commit_id"
+git reset --hard
+git reset --soft HEAD@{1}
+git reset --soft HEAD~1                       #Undo commit last, keep changed at local
+git reset --hard HEAD~1                       #Undo commit last, don't keep changed at local
+git reset --mixed HEAD~1                      #Undo commit last, keep changed at index
+git reset HEAD~1                              #Undo commit last, keep changed at index
+git reset origin/master                       #Undo commits not yet push
+git fetch origin                              #Reset to status of remote
+git reset --hard origin/master                #Reset to status of remote 
 ~~~
 
 // Clone
@@ -93,12 +175,13 @@ git rm -r [folder]  (git rm -r --cached [folder])
 
 // URL
 ~~~
-git remote -v
+git remote -v                                #Show all remote urls
 git remote -v | grep fetch | awk '{print $2}'
 git remote show origin
 git remote get-url origin
 git config --get remote.origin.url
-git remote set-url origin https://github.com/USERNAME/REPOSITORY.git  (change url)
+git remote set-url origin [url]              #Change origin url (eg : https://github.com/USERNAME/REPOSITORY.git)
+git remote add remote-name [url]             #Add remote repo
 ~~~
 
 // Merge branch to master
@@ -127,4 +210,16 @@ Settings (Repo settings) --> Branches --> Default Branch --> gh-pages --> Update
 
 # In terminal/cmd
 git push origin :master                 # Delete the old branch    
+~~~
+
+// Files
+~~~
+git rm [file1] [file2]
+git mv file [file_old] [[file_new]]
+git commit -m "deleting 2 files, renaming 1"
+~~~
+
+// Help
+~~~
+git help [command]
 ~~~
