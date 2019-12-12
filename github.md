@@ -73,10 +73,11 @@ git whatchanged origin/master -n 1   #show changes server and local
 git fetch origin master
 git diff                                   #Show file changed but not add
 git diff --cached                          #Show file changed and added
-git diff origin/master -- [local-path]
 git diff --name-status
-git diff [commit_id1] [commit_id2]
+git diff origin/master -- [local-path]
+git diff --name-only origin/master                        #Show all name files changed between repo and local 
 git diff --name-only [commit_id1] [commit_id2]            #Show all file changed between two commit_id
+git diff [commit_id1] [commit_id2]
 git diff-tree -no-commit-id --name-only -r [commit_id]    #Show all file changed at commit_id
 git show --pretty="format:" --name-only [commit_id]       #Show all file changed at commit_id
 git show [commit_id]                                      #Show detail of one commit
