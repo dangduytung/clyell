@@ -4,7 +4,7 @@ title: "Jekyll"
 permalink: /jekyll/
 ---
 
-// Install
+#### &#35; Install
 ~~~
 1. Ruby https://www.ruby-lang.org/en/downloads/
 2. Bundler : gem install bundler
@@ -16,7 +16,7 @@ gem 'github-pages', group: :jekyll_plugins
 6. Serve local : bundle exec jekyll serve (http://localhost:4000)
 ~~~
 
-// Command
+#### &#35; Command
 ~~~
 bundle install
 bundle update
@@ -24,7 +24,7 @@ bundle exec jekyll build --trace
 bundle exec jekyll serve --port 1234
 ~~~
 
-// Fix GitHub Metadata: No GitHub API authentication could be found. Some fields may be missing or have incorrect data.
+#### &#35; Fix GitHub Metadata: No GitHub API authentication could be found. Some fields may be missing or have incorrect data.
 ~~~ bash
 export JEKYLL_GITHUB_TOKEN=[github token]
 echo $JEKYLL_GITHUB_TOKEN
