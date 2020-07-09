@@ -81,6 +81,11 @@ git diff [commit_id1] [commit_id2]
 git diff-tree -no-commit-id --name-only -r [commit_id]    # Show all file changed at commit_id
 git show --pretty="format:" --name-only [commit_id]       # Show all file changed at commit_id
 git show [commit_id]                                      # Show detail of one commit
+git log --branches --not --remotes                        # Show messages committed and unpushed
+git log origin/master..HEAD                               # Show messages committed and unpushed
+git diff origin/master..HEAD                              # Show detail files committed and unpushed
+git diff --stat --cached origin/master                    # Show a list of files to be pushed
+git diff --numstat origin/master                          # Show full file paths of the files that will change
 ~~~
 
 #### &#35; Patch
