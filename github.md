@@ -71,8 +71,10 @@ git whatchanged origin/master -n 1   # Show changes server and local
 #### &#35; Diff change [remote-path] and [local-path] are the same
 ~~~
 git fetch origin master
-git diff                                   # Show file changed but not add
-git diff --cached                          # Show file changed and added
+git ls-files . --ignored --exclude-standard --others      # List ignored files
+git ls-files . --exclude-standard --others                # List untracked files
+git diff                                                  # Show file changed but not add
+git diff --cached                                         # Show file changed and added
 git diff --name-status
 git diff origin/master -- [local-path]
 git diff --name-only origin/master                        # Show all name files changed between repo and local 
