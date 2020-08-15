@@ -77,17 +77,17 @@ git diff                                                    # Show file changed 
 git diff --cached                                           # Show file changed and added
 git diff --name-status
 git diff origin/master -- [local-path]
-git diff --name-only origin/master                          # Show all name files changed between repo and local 
-git diff --name-only [commit_id1] [commit_id2]              # Show all file changed between two commit_id
+git diff --name-only origin/master                          # Show all files changed between repo and local
+git diff --name-only [commit_id1] [commit_id2]              # Show all files changed between two commit_id
 git diff [commit_id1] [commit_id2]
-git diff-tree -no-commit-id --name-only -r [commit_id]      # Show all file changed at commit_id
-git show --pretty="format:" --name-only [commit_id]         # Show all file changed at commit_id
+git diff-tree -no-commit-id --name-only -r [commit_id]      # Show all files changed at commit_id
+git show --pretty="format:" --name-only [commit_id]         # Show all files changed at commit_id
 git show [commit_id]                                        # Show detail of one commit
 git log --branches --not --remotes                          # Show messages committed and unpushed
 git log origin/master..HEAD                                 # Show messages committed and unpushed
 git diff origin/master..HEAD                                # Show detail files committed and unpushed
 git diff --stat --cached origin/master                      # Show a list of files to be pushed
-git diff --numstat origin/master                            # Show full file paths of the files that will change
+git diff --numstat origin/master                            # Show full file paths of the files will change
 ~~~
 
 #### &#35; Patch
