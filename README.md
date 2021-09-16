@@ -2,6 +2,9 @@
 
 [https://github.com/dangduytung/linux](https://github.com/dangduytung/linux)
 
+## Theme Clyell
+Link: [http://jekyllthemes.org/themes/clyell](http://jekyllthemes.org/themes/clyell)
+
 ### Characteristics
 
 - [x] Simple
