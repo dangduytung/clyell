@@ -4,6 +4,9 @@ title: "Github"
 permalink: /github/
 ---
 
+#### &#35; Tutorial
+[https://backlog.com/git-tutorial/vn](https://backlog.com/git-tutorial/vn)
+
 #### &#35; Status
 ~~~
 git status
@@ -11,18 +14,23 @@ git status
 
 #### &#35; Branch
 ~~~
-git branch
-git branch -r                                               # git branch -a
+git branch                                                  # To see local branches
+git branch -r                                               # To see remote branches
+git branch -a                                               # To see all local and remote branches
 git branch | grep \* | cut -d ' ' -f2
-git branch [new-branch]                                     # Create a branch (then checkout that branch)
+git branch [new-branch]                                     # Switch to a branch
+git checkout --track origin/my-branch-name                  # Switch to the branch
+git checkout -b [new-branch]                                # Create a branch
 git checkout - [new-branch]                                 # Create a branch and checkout that branch
 git cherry -v master                                        # Check commit history with current branch
-git merge [branch]                                          # Merge master from other branch (But first: git checkout master)
+git merge [branch]                                          # Merge master from other branch
 git merge branch-name --no-commit --no-ff                   # Merge branch not yet commit
 git diff [branch]                                           # Check changed between current state with other branch
 git diff [branch] [file]
-git branch -d [branch]                                      # Delete branch
-git fetch orgin                                             # Get all branches
+git branch -d [branch]                                      # Delete local branch
+git push -d origin <branch-name>                            # To delete the remote branch
+git fetch origin                                            # Get all branches
+git pull                                                    # To get a list of all branches from the remote
 ~~~
 
 #### &#35; Other
@@ -230,4 +238,34 @@ git commit -m "deleting 2 files, renaming 1"
 #### &#35; Help
 ~~~
 git help [command]
+~~~
+
+#### &#35; Quick setup
+~~~
+# Create a new repository on the command line 
+echo "# BTC" >> README.md 
+git init 
+git add README.md 
+git commit -m "first commit" 
+git branch -M main 
+git remote add origin https://github.com/dangduytung/Repo.git 
+git push -u origin main 
+
+# Or push an existing repository from the command line 
+git remote add origin https://github.com/dangduytung/Repo.git 
+git branch -M main 
+git push -u origin main
+~~~
+
+#### &#35; Clear history github
+~~~
+-- Remove the history from  
+rm -rf .git 
+-- recreate the repos from the current content only 
+git init 
+git add . 
+git commit -m "Initial commit" 
+-- push to the github remote repos ensuring you overwrite history 
+git remote add origin git@github.com:<YOUR ACCOUNT>/<YOUR REPOS>.git 
+git push -u --force origin master
 ~~~
