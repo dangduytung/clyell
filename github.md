@@ -80,6 +80,20 @@ git fetch <remote>
 git fetch origin master
 ~~~
 
+### &#35; Stash
+~~~
+git stash                                                   # Save local changes before `git pull`
+git stash save                                              # ~ git stash
+git stash list
+git stash clear
+git stash branch branch-draff stash@{1}                     # Create branch from a stash
+
+# `git pull` keeping local changes (or pull get errors)
+git stash
+git pull
+git stash pop
+~~~
+
 ### &#35; Pull
 ~~~
 git pull                                                    # To get a list of all branches from the remote
@@ -254,7 +268,6 @@ git describe --tags `git rev-list --tag --max-count=1`      # View last tag
 git for-each-ref --sort=-committerdate refs/heads/ | head   # List branches last usaged
 tar cJf project.tar.xz project/ --exclude-vcs               # Tar project except .git folder
 git diff --name-only | xargs tar -cf project.tar -T -       # Tar all files which changed at local
-git stash                                                           
 git ls-tree HEAD                                            # Tree object
 git cat-file –p [commit_id]
 git grep "search"
