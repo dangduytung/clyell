@@ -24,3 +24,9 @@ disqus: dangduytung
 markdown: kramdown
 permalink: /:categories/:title
 ~~~
+
+### Run Command
+~~~
+bundle exec jekyll serve      # http://localhost:4000  (--port 1234)
+bundle exec jekyll build
+~~~

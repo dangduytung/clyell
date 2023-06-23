@@ -208,6 +208,27 @@ git diff [branch]                                           # Check changed betw
 git diff [branch] [file]
 ~~~
 
+### &#35; Check files changed on the origin compared with local
+##### 1. This command updates your local repository with the latest changes from the remote repository (origin) without modifying your local branch.
+~~~
+git fetch
+~~~
+
+##### 2. This command compares the file names and statuses between your local branch and the corresponding branch on the origin. The --name-status flag shows only the names and status of the changed files.
+~~~
+git diff --name-status <local-branch> origin/<local-branch>   # git diff --name-status master origin/master
+~~~
+~~~
+A       path/to/added-file.txt
+M       path/to/modified-file.txt
+D       path/to/deleted-file.txt
+~~~
+
+##### 3. Others command
+~~~
+git diff <local-branch> origin/<local-branch>                 # git diff develop origin/develop  
+~~~
+
 ### &#35; Diff tools (Gui)
 [http://meldmerge.org](http://meldmerge.org){:target="_blank"}
 ~~~
